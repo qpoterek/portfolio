@@ -39,7 +39,7 @@ export default {
 	],
 	skills: {
 		os: {
-			label: "Systèmes d'exploitation",
+			label: "🖥️ Systèmes d'exploitation",
 			icon: "ph-desktop-fill",
 			items: [
 			{
@@ -57,7 +57,7 @@ export default {
 			}]
 		},
 		gis: {
-			label: "SIG et cartographie",
+			label: "🧭 SIG et cartographie",
 			icon: "ph-compass-fill",
 			items: [
 				{
@@ -99,7 +99,7 @@ export default {
 			],
 		},
 		ml: {
-			label: "Télédétection",
+			label: "🛰️ Télédétection",
 			icon: "ph-planet-fill",
 			items: [
 				{
@@ -130,7 +130,7 @@ export default {
 			],
 		},
 		programming: {
-			label: "Développement",
+			label: "🤖 Développement",
 			icon: "ph-cpu-fill",
 			items: [
 				{
@@ -203,7 +203,7 @@ export default {
 			],
 		},
 		web: {
-			label: "Bibliothèques web",
+			label: "📦 Bibliothèques web",
 			icon: "ph-browsers-fill",
 			items: [
 				{
@@ -250,7 +250,7 @@ export default {
 			],
 		},
 		markup: {
-			label: "Markup et notation",
+			label: "🗒️ Markup et notation",
 			icon: "ph-brackets-angle-fill",
 			items: [
 				{
@@ -279,7 +279,7 @@ export default {
 			],
 		}, 
 		database: {
-			label: "Bases de données",
+			label: "💽 Bases de données",
 			icon: "ph-database-fill",
 			items: [
 				{
@@ -305,7 +305,7 @@ export default {
 			],
 		}, 
 		_3d: {
-			label: "Photogrammétrie et 3D",
+			label: "📐 Photogrammétrie et 3D",
 			icon: "ph-cube-fill",
 			items: [
 				{
@@ -342,7 +342,7 @@ export default {
 			],
 		},
 		design: {
-			label: "Infographie",
+			label: "🖌️ Infographie",
 			icon: "ph-paint-brush-fill",
 			items:		[
 				{
@@ -378,7 +378,7 @@ export default {
 			],
 		},
 		others: {
-			label: "Outils transversaux",
+			label: "🧩 Outils transversaux",
 			icon: "ph-puzzle-piece-fill",
 			items: [
 				{

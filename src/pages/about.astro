@@ -1,6 +1,4 @@
 ---
-import "../../node_modules/phosphor-icons/src/css/icons.css" 
-
 import config from "../about.config"
 
 import BaseLayout from '../layouts/BaseLayout.astro'
@@ -66,7 +64,6 @@ import BannerInnovation from "../icons/BannerInnovation.astro"
 						Object.keys(config.skills).map((item, i) => (
 							(i < 5 &&
 							<Accordion label={config.skills[item].label} classNames="">
-								<i slot="icon" class={`${config.skills[item].icon} ph-xl`}></i>
 								<SkillGroup slot="content" items={config.skills[item].items} />
 							</Accordion>
 							)
@@ -78,7 +75,6 @@ import BannerInnovation from "../icons/BannerInnovation.astro"
 						Object.keys(config.skills).map((item, i) => (
 							(i >= 5 &&
 							<Accordion label={config.skills[item].label}>
-								<i slot="icon" class={`${config.skills[item].icon} ph-xl`}></i>
 								<SkillGroup slot="content" items={config.skills[item].items} />
 							</Accordion>
 							)
