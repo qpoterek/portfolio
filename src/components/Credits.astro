@@ -1,0 +1,48 @@
+---
+import IconButton from "./IconButton.astro"
+import Modal from "./Modal.astro"
+import CreativeCommons from "../icons/CreativeCommons.astro"
+import Info from "../icons/Info.astro"
+
+const { 
+	height=28, 
+	width=28,
+} = Astro.props
+
+const underlinedText = "underline decoration-2"
+---
+
+<>
+	<IconButton id="info-btn">
+		<Info height={height} width={width} />
+	</IconButton>
+
+	<Modal name="credits">
+		<div class="flex flex-col gap-y-4 max-w-prose">
+			<h2 class="text-lg font-bold">Crédits</h2>
+			<h3 class="font-semibold">Modèles 3D</h3>
+			<ul>
+				<li><a class={underlinedText} href="https://studio.blender.org/characters/5718a967c379cf04929a4247/v1/" target="_blank">Personnage</a> modifié de <a class={underlinedText} href="https://studio.blender.org/welcome/">Blender Studio</a> <CreativeCommons classNames="inline-block" height={16} width={16} /> BY</li>
+				<li><a class={underlinedText} href="https://sketchfab.com/3d-models/earth-0caafb7e837047a688a3e504c0ea74af" target="_blank">Terre</a> modifiée de <a class={underlinedText} href="https://sketchfab.com/karinkreeft8">BamPistache</a> <CreativeCommons classNames="inline-block" height={16} width={16} /> BY-NC</li>
+			</ul>
+			<h3 class="font-semibold">Icônes</h3>
+			<ul>
+				<li><a class={underlinedText} href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> <CreativeCommons classNames="inline-block" height={16} width={16} /> MIT</li>
+				<li><a class={underlinedText} href="https://phosphoricons.com/" target="_blank">Phosphor Icons</a>  <CreativeCommons classNames="inline-block" height={16} width={16} /> MIT</li>
+				<li><a class={underlinedText} href="https://www.svgrepo.com/" target="_blank">SVG Repo</a>  <CreativeCommons classNames="inline-block" height={16} width={16} /> PD, MIT, SVG Repo License</li>
+			</ul>
+		</div>
+	</Modal>
+</>
+
+<script is:inline>
+	let $modal = document.getElementById("credits-modal")
+	let $infoBtn = document.getElementById("info-btn")
+
+	function showModal() {
+		$modal.classList.remove("pointer-events-none", "opacity-0")
+		$modal.classList.add("pointer-events-auto", "opacity-100")
+	}
+
+	$infoBtn.addEventListener("pointerup", () => showModal())
+</script>

@@ -1,0 +1,55 @@
+---
+const { 
+	title, 
+	description, 
+	href, 
+	src, 
+	alt, 
+	nature, 
+	date,
+	position="relative",
+} = Astro.props
+---
+
+<a class={position} href={href} target="_blank" data-isolde-el={nature}>
+	<article class="
+		relative max-w-2xl h-fit flex flex-col rounded-lg 
+		bg-white/50 dark:bg-neutral-700/50 shadow
+		hover:scale-105 transition-transform
+	">
+		<div class="
+			absolute top-4 left-4 w-fit px-3 py-1 shadow-md
+			bg-white/90 dark:bg-neutral-700/90 rounded-full
+		">
+			<p class="text-sm truncate"><span class="font-semibold">{nature[0].toUpperCase() + nature.substring(1)}</span> — <span>{date}</span></p>
+		</div>
+		<div class="
+			overflow-hidden aspect-w-16 aspect-h-9
+			rounded-lg bottom-shadow
+		">
+			<img 
+				src={src} alt={alt} 
+				loading="lazy" decoding="async"
+				class="object-cover h-40 w-full"
+			/>
+		</div>
+
+		<h3 class="font-bold p-4 w-full">{title}</h3>
+
+		<p class="w-full px-4 mb-4 text-sm text-neutral-500 dark:text-neutral-400 hyphens">
+			{description}
+		</p>
+	</article>
+</a>
+
+<style>
+	.bottom-shadow {
+		box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, 0.2);
+	}
+	
+	.hyphens {
+		word-break: break-word;
+		word-wrap: break-word;
+		hyphens: auto;
+	}
+</style>

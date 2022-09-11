@@ -1,0 +1,47 @@
+---
+import IconButton from "./IconButton.astro"
+import CloseCircle from "../icons/CloseCircle.astro"
+
+const { 
+	name,
+} = Astro.props;
+
+const modalId = `${name}-modal`
+const modalContentId = `${name}-modal-content`
+---
+
+<div id={modalId} class="
+	modal pointer-events-none opacity-0 transition 
+	flex items-center justify-center
+	fixed top-0 left-0 z-40 h-full w-full p-4
+	bg-neutral-200/50 dark:bg-neutral-800/50 backdrop-blur-sm
+">
+	<div id={modalContentId} class="
+		modal-content relative rounded shadow p-4 max-w-md h-fit 
+		bg-neutral-100 dark:bg-neutral-900
+	">
+		<IconButton classNames="modal-close absolute top-1 right-1">
+			<CloseCircle />
+		</IconButton>
+		<slot />
+	</div>
+</div>
+
+<script define:vars={{ modalId, modalContentId }}>
+	const $modal = document.getElementById(modalId)
+
+	function hideModal() {
+		$modal.classList.remove("pointer-events-auto", "opacity-100")
+		$modal.classList.add("pointer-events-none", "opacity-0")
+	}
+
+	$modal.addEventListener("pointerup", (e) => {
+		if (
+			e.target.closest(`#${modalContentId} .modal-close`) || 
+			!e.target.closest(`#${modalContentId}`)
+		) {
+			hideModal()
+			e.stopPropagation()
+		}
+	})
+</script>

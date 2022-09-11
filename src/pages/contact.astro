@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseMain from '../layouts/BaseMain.astro'
+import Anchor from '../components/Anchor.astro'
+import Button from '../components/Button.astro'
+import ArrowFatLineUp from '../icons/ArrowFatLineUp.astro'
+---
+
+<BaseLayout title="Contact | Quentin Poterek" activeNavItem="/contact">
+	<BaseMain>
+		<div class="flex flex-col gap-y-12">
+			<h2 class="text-2xl font-bold">💬 Me contacter</h2>
+
+			<p class="flex flex-wrap items-center gap-2">Vous pouvez me contacter à l'aide du formulaire ci-dessous, ou directement via mon adresse électronique <Anchor href="mailto:quentin.poterek@outlook.fr" isStyled={true} openInNewTab={false} classNames="break-all">✉️ quentin.poterek@outlook.fr</Anchor></p>
+			
+			<form action="https://formspree.io/f/xlevdgkq" method="POST" class="flex flex-col gap-6">
+				<section class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					<section class="rounded p-3 bg-white/50 dark:bg-neutral-700/50">
+						<label class="font-semibold text-sm uppercase">Prénom</label>
+						<input type="text" name="firstName" placeholder="ex. Pierre" class="mt-1 w-full py-2 bg-transparent border-none outline-none rounded-sm focus:outline-neutral-900/20 dark:focus:outline-neutral-50/20">
+					</section>
+					<section class="rounded p-3 bg-white/50 dark:bg-neutral-700/50">
+						<label class="font-semibold text-sm uppercase">Nom</label>
+						<input type="text" name="lastName" placeholder="ex. Dupont" class="mt-1 w-full py-2 bg-transparent border-none outline-none rounded-sm focus:outline-neutral-900/20 dark:focus:outline-neutral-50/20">
+					</section>
+				</section>
+				<section class="rounded p-3 bg-white/50 dark:bg-neutral-700/50">
+					<label class="font-semibold text-sm uppercase after:content-['*'] after:ml-0.5">Email</label>
+					<input type="email" name="email" placeholder="ex. pierre.dupont@mail.com" required class="mt-1 w-full py-2 bg-transparent border-none outline-none rounded-sm focus:outline-neutral-900/20 dark:focus:outline-neutral-50/20">
+				</section>
+				<section class="rounded p-3 bg-white/50 dark:bg-neutral-700/50">
+					<label class="font-semibold text-sm uppercase after:content-['*'] after:ml-0.5">Message</label>
+					<textarea name="message" placeholder="Entrez votre message ici..." required class="mt-1 -mb-1 w-full h-28 py-2 resize-none bg-transparent border-none outline-none rounded-sm focus:outline-neutral-900/20 dark:focus:outline-neutral-50/20"></textarea>
+				</section>
+				<Button 
+					buttonType="submit"
+					classNames="self-center"
+				>
+					<ArrowFatLineUp />
+					Envoyer
+				</Button>
+			</form>
+		</div>
+	</BaseMain>
+</BaseLayout>

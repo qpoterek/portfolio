@@ -1,0 +1,143 @@
+---
+import "../../node_modules/phosphor-icons/src/css/icons.css" 
+
+import config from "../about.config"
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseMain from "../layouts/BaseMain.astro"
+import Accordion from "../components/Accordion.astro"
+import LanguageCard from "../components/LanguageCard.astro"
+import SkillGroup from '../components/SkillGroup.astro'
+import BannerGeomatics from "../icons/BannerGeomatics.astro"
+import BannerHumanitarian from "../icons/BannerHumanitarian.astro"
+import BannerInnovation from "../icons/BannerInnovation.astro"
+---
+
+<BaseLayout title="About | Quentin Poterek" activeNavItem="/about">
+	<BaseMain>
+		<section class="flex flex-col gap-y-12">
+			<h2 class="text-2xl font-bold">👤 Profil</h2>
+			<div class="grid grid-cols-6 gap-y-12 gap-x-8">
+				{
+					config.profile.map((item, i) => (
+						<article class="col-span-6 md:col-span-2 flex flex-col items-center gap-y-12">
+							{(i === 0) && <BannerGeomatics />}
+							{(i === 1) && <BannerInnovation />}
+							{(i === 2) && <BannerHumanitarian />}
+							<div>
+								<h3 class="text-lg font-semibold mb-8">{item.title}</h3>
+								<p>{item.content}</p>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="flex flex-col gap-y-12">
+			<h2 class="text-2xl font-bold">🗣️ Langues</h2>
+			<div class="flex flex-wrap justify-center gap-4">
+				{
+					config.languages.map(item => (
+						<LanguageCard 
+							language={item.language} 
+							flag={item.flag} 
+							level={item.level} 
+							level_oral={item.level_oral} 
+							level_written={item.level_written} 
+						/>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="flex flex-col gap-y-12">
+			<h2 class="text-2xl font-bold">👥 Collaboratif et humanitaire</h2>
+			<p>Etant membre de la <strong>Fondation OpenStreetMap</strong> et également bénévole auprès de <strong>CartONG</strong>, je contribue régulièrement au projet de cartographie collaborative <strong>OpenStreetMap</strong>. Ces contributions se font principalement autour des missions publiées sur le <strong>HOT Tasking Manager</strong>, notamment dans le cadre des <strong>activations</strong> qui font suite à des <strong>catastrophes naturelles</strong>.</p>
+		</section>
+	
+
+		<section class="flex flex-col gap-y-12">
+			<h2 class="text-2xl font-bold">⚒️ Compétences et outils</h2>
+			<p>Mes <strong>expériences professionnelles</strong> et ma formation de <strong>géomaticien</strong> notamment m'ont incité à développer des compétences dans des <strong>domaines variés</strong>, résumés ci-dessous. N'hésitez pas à dérouler les menus pour plus de détails.</p>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2">
+				<div class="flex flex-col gap-y-2">
+					{
+						Object.keys(config.skills).map((item, i) => (
+							(i < 5 &&
+							<Accordion label={config.skills[item].label} classNames="">
+								<i slot="icon" class={`${config.skills[item].icon} ph-xl`}></i>
+								<SkillGroup slot="content" items={config.skills[item].items} />
+							</Accordion>
+							)
+						))
+					}
+				</div>
+				<div class="flex flex-col gap-y-2">
+					{
+						Object.keys(config.skills).map((item, i) => (
+							(i >= 5 &&
+							<Accordion label={config.skills[item].label}>
+								<i slot="icon" class={`${config.skills[item].icon} ph-xl`}></i>
+								<SkillGroup slot="content" items={config.skills[item].items} />
+							</Accordion>
+							)
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="flex flex-col gap-y-12">
+			<h2 class="text-2xl font-bold">💼 Expériences</h2>
+			<div class="flex flex-col gap-4">
+				{
+					config.experiences.map(item => (
+						<div class="flex flex-col sm:flex-row gap-4 first:pt-4 pb-4 border-b first:border-y border-neutral-900/10 dark:border-neutral-100/10 text-neutral-700 dark:text-neutral-300">
+							<div class="flex flex-col md:flex-row w-full md:w-1/2 gap-2">
+								<div class="w-full md:w-1/2 pt-0.5"><p>{item.start} - {item.end}</p></div>
+								<div class="flex flex-col w-full md:w-1/2 gap-y-1">
+									<p class="text-xl leading-1 text-neutral-900 dark:text-neutral-100">{item.employer}</p>
+									<p class="font-semibold">{item.position}</p>
+								</div>
+							</div>
+							<div class="flex flex-col w-full md:w-1/2 gap-2 pt-1">
+								{item.tasks.map(task => <p>{task}</p>)}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="flex flex-col gap-y-12">
+			<h2 class="text-2xl font-bold">🎓 Education</h2>
+			<div class="flex flex-col gap-4">
+				{
+					config.education.map(item => (
+						<div class="flex flex-col sm:flex-row gap-4 first:pt-4 pb-4 border-b first:border-y border-neutral-900/10 dark:border-neutral-100/10 text-neutral-700 dark:text-neutral-300">
+							<div class="flex flex-col md:flex-row w-full md:w-1/2 gap-2">
+								<div class="w-full md:w-1/2 pt-0.5">
+									{
+										item.start ?
+										<p>{item.start} - {item.end}</p> :
+										<p>{item.end}</p>
+									}
+								</div>
+								<div class="flex flex-col w-full md:w-1/2 gap-y-1">
+									<p class="text-lg leading-1 text-neutral-900 dark:text-neutral-100">{item.organism}</p>
+									<p>{item.place}</p>
+								</div>
+							</div>
+							<div class="flex flex-col w-full md:w-1/2 gap-2 pt-1">
+								<p class="font-semibold">{item.title}</p>
+								<p>{item.honors}</p>
+								<p>{item.content}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+	</BaseMain>
+</BaseLayout>

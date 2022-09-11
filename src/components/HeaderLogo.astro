@@ -1,0 +1,17 @@
+---
+import Logo from "../icons/Logo.astro"
+
+const { 
+	text,
+} = Astro.props
+---
+
+<div class="flex items-center gap-x-3 select-none">
+	<Logo />
+	{
+		text && 
+		<p class="hidden md:block max-w-min font-bold text-lg leading-4">
+			{text}
+		</p>
+	}
+</div>

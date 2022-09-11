@@ -1,0 +1,42 @@
+---
+import config from "../index.config"
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseMain from "../layouts/BaseMain.astro"
+import Anchor from "../components/Anchor.astro"
+import ArrowFatLineDown from '../icons/ArrowFatLineDown.astro'
+---
+
+<BaseLayout title="Accueil | Quentin Poterek" activeNavItem="/">
+	<BaseMain classNames="w-full p-4 md:p-8 lg:p-16 py-12" overrideDefaults={true}>
+		<div class="
+			h-full w-full flex flex-wrap justify-center items-center gap-12
+		">
+			<img src="/hero/hero-image-light.png" class="w-full max-w-[512px] block dark:hidden" />
+			<img src="/hero/hero-image-dark.png" class="w-full max-w-[512px] hidden dark:block" />
+
+			<div class="flex flex-col gap-y-8">
+				<h1 class="text-4xl font-bold max-w-prose leading-normal">Bonjour, moi c’est Quentin Poterek !</h1>
+				<p class="text-lg max-w-prose">Je suis un <strong>géomaticien</strong> avec un intérêt particulier pour la <strong>science des données</strong>, l’<strong>infographie</strong>, les technologies du <strong>web</strong> et les projets à vocation <strong>collaborative</strong>.</p>
+				<p class="text-lg max-w-prose">Je suis basé à <strong>Strasbourg</strong>, dans le beau département du <strong>Bas-Rhin</strong> en Alsace.</p>
+			
+				<div class="w-full flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
+					{
+						config.cv.map(item => (
+							<Anchor href={item.url} isStyled={true}>
+								<ArrowFatLineDown />
+								{item.title}
+							</Anchor>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</BaseMain>
+</BaseLayout>
+
+<style>
+	main {
+		display: flex;
+	}
+</style>

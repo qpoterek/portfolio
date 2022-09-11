@@ -1,0 +1,25 @@
+---
+const { 
+  id, 
+  classNames, 
+  buttonType="button", 
+  overrideDefaults=false, 
+} = Astro.props
+
+let defaultClassNames = `
+  h-10 w-10 flex items-center justify-center rounded 
+  transition-colors hover:bg-neutral-300/50
+`
+
+if (!overrideDefaults) {
+  defaultClassNames += ` ${classNames}`
+}
+---
+
+<button 
+  id={id}
+  type={buttonType}
+  class={overrideDefaults ? classNames : defaultClassNames}
+>
+	<slot />
+</button>

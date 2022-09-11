@@ -1,0 +1,53 @@
+---
+import Star from "../icons/Star.astro"
+
+const { 
+	title, 
+	icon, 
+	level, 
+	enableDark=false,
+} = Astro.props
+
+let levelLabel = ""
+const unfilledStarClass = "transition-colors fill-neutral-800/25 dark:fill-neutral-200/25"
+
+if (level) {
+	switch (level) {
+		case 1:
+			levelLabel = "Rudimentaire"
+			break
+		case 2:
+			levelLabel = "Intermédiaire"
+			break
+		case 3:
+			levelLabel = "Avancé"
+			break
+		default:
+			levelLabel = "Inconnu"
+	}
+}
+
+const classNames = `pointer-events-none h-10 w-10 rounded ${enableDark ? "transition dark:invert" : ""}`
+---
+
+<div class="
+	flex gap-x-4 relative h-fit px-4 py-3 
+	rounded bg-white/50 dark:bg-neutral-700/50 
+">
+	<img src={icon} class={classNames} loading="lazy"/>
+	<div class="flex flex-col justify-center">
+		<h3 class="text-sm font-bold">{title}</h3>
+		{
+			level &&
+			<p class="text-xs text-neutral-500 dark:text-neutral-400">{levelLabel}</p>
+		}
+	</div>
+	{
+		level &&
+		<div class="absolute bottom-[-7px] left-0 right-0 flex justify-center">
+			<Star width={16} height={16} />
+			<Star width={16} height={16} classNames={level < 2 ? unfilledStarClass : ""} overrideDefaults={(level < 2)} />
+			<Star width={16} height={16} classNames={level < 3 ? unfilledStarClass : ""} overrideDefaults={(level < 3)} />
+		</div>
+	}
+</div>

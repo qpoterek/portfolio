@@ -1,0 +1,37 @@
+---
+import Button from "./Button.astro"
+import NavItem from "./NavItem.astro"
+import List from "../icons/List.astro"
+
+const { 
+	navItems, 
+} = Astro.props
+---
+
+<div class="group relative">
+	<Button>
+		<List height={16} width={16} />
+		Menu
+	</Button>
+	<div class="
+	pointer-events-none scale-y-0
+	group-hover:pointer-events-auto group-hover:scale-y-100
+	z-30 w-36 absolute right-[-30px] top-10
+	p-2 transition-all origin-top 
+">
+		<div class="
+			
+			grid grid-cols-1 gap-y-1 p-1
+			bg-neutral-50/90 dark:bg-neutral-800/90
+			rounded shadow-md dark:shadow-lg
+		">
+			{navItems.map(item => (
+				<NavItem 
+					href={item.href} 
+					text={item.text} 
+					isFullWidth={true}
+				/>
+			))}
+		</div>
+	</div>
+</div>

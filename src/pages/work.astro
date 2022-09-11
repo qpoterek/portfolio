@@ -1,0 +1,109 @@
+---
+import config from "../work.config"
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseMain from "../layouts/BaseMain.astro"
+import Card from '../components/Card.astro'
+---
+
+<BaseLayout title="Travaux | Quentin Poterek" activeNavItem="/work">
+	<BaseMain>
+		<div class="flex flex-col justify-center items-center gap-4">
+			<p class="text-lg font-semibold">🔎 Filtrer par type de média</p>
+			<ul class="flex flex-wrap gap-4 justify-center items-center">
+				<li class="grid-filter grid-filter-active dark:border-neutral-700 dark:bg-neutral-900/80 dark:shadow-md" data-isolde-link="all">Tout</li>
+				{
+					
+					[...new Set(config.map(item => item.nature))]
+						.sort((a, b) => a[0] > b[0] ? 1 : -1)
+						.map(item => (
+							<li class="grid-filter dark:border-neutral-700 dark:bg-neutral-900/80 dark:shadow-md" data-isolde-link={item}>
+								{item[0].toUpperCase() + item.substring(1)}
+							</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div id="masonry-grid" class="isolde-default w-full">
+			{
+				config.map(item => (
+					<Card 
+						title={item.title}
+						description={item.description}
+						href={item.href}
+						src={item.src}
+						alt={item.alt}
+						nature={item.nature}
+						date={item.date}
+						position="absolute"
+					/>
+				))
+			}
+		</div>
+
+		<!-- {
+			config.map(section => (
+				<section class="flex flex-col gap-y-12">
+					<h2 id={section.id} class="text-2xl font-bold">{section.title}</h2>
+					<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{
+							section.items.map(item => (
+								<Card 
+									title={item.title}
+									description={item.description}
+									href={item.href}
+									src={item.src}
+									alt={item.alt}
+									nature={item.nature}
+									date={item.date}
+								/>
+							))
+						}
+					</div>
+				</section>
+			))
+		} -->
+	</BaseMain>
+</BaseLayout>
+
+<script>
+	import isolde from "isolde"
+	import "isolde/dist/isolde.min.css"
+	
+	const isoldejs = new isolde({
+		parent:  document.querySelector('#masonry-grid'),
+		links: document.querySelectorAll('[data-isolde-link]'),
+		active: 'grid-filter-active',
+		fadeDuration:{
+			in: 150,
+			out: 0
+		},
+		responsive: {
+			980: {
+			columns: 3
+			},
+			560: {
+			columns: 2
+			},
+			180: {
+			columns: 1
+			}
+		}
+	})
+</script>
+
+<style>
+	.grid-filter {
+		@apply 
+			text-sm font-semibold cursor-pointer
+			border-2 border-neutral-200/90 bg-white/80
+			rounded-full px-3 py-1 
+			transition-transform hover:scale-110
+			opacity-50 shadow;
+	}
+
+	.grid-filter-active {
+		@apply opacity-100;
+	}
+</style>

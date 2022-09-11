@@ -1,0 +1,9 @@
+---
+import SvgIcon from "../components/SvgIcon.astro"
+
+const { height=28, width=28, classNames } = Astro.props
+---
+
+<SvgIcon classNames={classNames} height={height} width={width}>
+	<path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V88H40V56Z"></path>
+</SvgIcon>

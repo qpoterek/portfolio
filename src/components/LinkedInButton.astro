@@ -1,0 +1,18 @@
+---
+import config from "../config"
+
+import Anchor from "./Anchor.astro"
+import IconButton from "./IconButton.astro"
+import LinkedIn from "../icons/LinkedIn.astro"
+
+const { 
+	height=28, 
+	width=28,
+} = Astro.props
+---
+
+<IconButton id="linkedin">
+	<Anchor href={config.metadata.linkedin}>
+		<LinkedIn height={height} width={width} />
+	</Anchor>
+</IconButton>

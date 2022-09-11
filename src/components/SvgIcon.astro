@@ -1,0 +1,25 @@
+---
+const { 
+	height=24, 
+	width=24, 
+	viewBox="0 0 256 256", 
+	classNames, 
+	overrideDefaults,
+} = Astro.props
+
+let defaultClassNames = "fill-neutral-800 dark:fill-neutral-200"
+
+if (!overrideDefaults && classNames) {
+	defaultClassNames += ` ${classNames}`
+}
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" 
+	class={overrideDefaults ? classNames : defaultClassNames}
+	height={`${height}`}
+	width={`${width}`}
+	viewBox={`${viewBox}`}
+	preserveAspectRatio="xMaxYMax meet"
+>
+	<slot />
+</svg>

@@ -1,0 +1,46 @@
+---
+import BaseBody from "./BaseBody.astro"
+import BaseHead from "./BaseHead.astro"
+import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro"
+
+const { title, activeNavItem } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+	<BaseHead title={title}/>
+	<BaseBody>
+		<div id="app">
+			<Header activeNavItem={activeNavItem} />
+			<slot />
+			<Footer />
+		</div>
+	</BaseBody>
+</html>
+
+<style>
+	#app {
+		min-height: 100vh;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 80px 1fr 80px;
+		grid-template-areas: 
+			"header"
+			"main"
+			"footer";
+		
+	}
+
+	:global(#app > header) {
+		grid-area: header;
+	}
+
+	:global(#app > main) {
+		grid-area: main;
+	}
+
+	:global(#app > footer) {
+		grid-area: footer;
+	}
+</style>
