@@ -9,8 +9,8 @@ const {
 } = Astro.props
 ---
 
-<nav class="flex justify-center items-center">
-	<div class="hidden md:flex justify-center items-center gap-x-4">
+<nav style="display:flex;justify-content:center;align-items:center;">
+	<div style="justify-items:center;align-items:center;column-gap:16px;" class="hidden md:flex">
 		{navItems.map(item => (
 			<NavItem 
 				href={item.href} 
