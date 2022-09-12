@@ -13,25 +13,12 @@ import "@fontsource/fira-sans/700-italic.css"
 const { title } = Astro.props
 ---
 
-<title>{title}</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="author" content={config.metadata.author} />
-<meta name="keywords" content={config.metadata.keywords.join()} />
-<meta name="category" content={config.metadata.category} />
-<meta name="summary" content={config.metadata.summary} />
-<style is:inline>
-	@keyframes fadeIn {
-		from { opacity: 0; }
-		to { opacity: 1; }
-	}
-
-	header,
-	footer {
-		animation-duration: 1.5s;
-		animation-iteration-count: 1;
-		animation-name: fadeIn;
-		opacity: 0;
-		opacity: 1;
-	}
-</style>
+<head>
+	<title>{title}</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content={config.metadata.author} />
+	<meta name="keywords" content={config.metadata.keywords.join()} />
+	<meta name="category" content={config.metadata.category} />
+	<meta name="summary" content={config.metadata.summary} />
+</head>
