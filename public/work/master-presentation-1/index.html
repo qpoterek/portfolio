@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>Urban expansion</title>
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Slab|Open+Sans:300" rel="stylesheet"> 
+		<style type='text/css'>
+			* {
+				font-family: 'Open Sans', sans-serif;
+				font-size: 12px;
+				color: #DFDFDF;
+				margin: 0;
+				padding: 0;
+			}
+			html, body {
+				width: 100%;
+				height: 100%;
+			}
+			#map {
+				position: absolute;
+				background-color: #1E1E20;
+				width: 100%;
+				height: 100%;
+				left: 0;
+			}
+			#right-panel {
+				position: fixed;
+				background-color: #1E1E20;
+				border: 3px solid #374140;
+				width: 340px;
+				height: 520px;
+				right: 10px;
+				top: 10px;
+				z-index: 2;
+			}
+			#map-attributions {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				z-index: 1;
+				whidth: 200px;
+				height: 20px;
+				padding: 0px 10px 3px 0px;
+			}
+			#map-attributions p, #map-attributions p a {
+				text-decoration: none;
+				font-size: 10px;
+			}
+
+			#rp-map-title{
+				height: 100px;
+				text-align: center;
+				background-color: #1E1E20;
+				line-height: 34px;
+			}
+			h1{
+				font-family: 'Josefin Slab', serif;
+				font-size: 28px;
+				padding-top: 18px;
+			}
+			hr {
+				 border: 0; 
+				 border-bottom: 1px solid #374140; 
+				 background: #1E1E20;
+			}
+			#rp-map-layers1{
+				position: absolute;
+				top: 100px;
+				height: 200px;
+			}
+			#rp-map-layers2{
+				position: absolute;
+				top: 300px;
+				height: 200px;
+			}
+			#h21{
+				margin-top: 25px;
+			}
+			#h21, #h22{
+				font-family: 'Josefin Slab', serif;
+				font-size: 20px;
+				padding: 0px 20px 0px 20px;
+			}
+			.layer-pointer {
+				cursor: pointer;
+			}
+			/* *****
+			Style map-layers 1
+			***** */
+			#layer-extent, #layer-socio{
+				position: absolute;
+				margin-top: 25px;
+				width: 340px;
+				text-align: center;
+			}
+			td {
+				padding: 5px;
+				height: 22px;
+			}
+			.l1 {
+				border: 1px solid;
+			}
+			#layer1993{
+				border-color: #FF5434;
+				transition: 1s;
+				text-shadow: 0px 1px 1px #1E1E20;
+			}
+			.layer1993Pushed{
+				background-color: #FF5434;
+				transition: 1s;
+			}
+			#layer2000{
+				border-color: #CC1E2C;
+				transition: 1s;
+				text-shadow: 0px 1px 1px #1E1E20;
+			}
+			.layer2000Pushed{
+				background-color: #CC1E2C;
+				transition: 1s;
+			}
+			#layer2010{
+				border-color: #731630;
+				transition: 1s;
+				text-shadow: 0px 1px 1px #1E1E20;
+			}
+			.layer2010Pushed{
+				background-color: #731630;
+				transition: 1s;
+			}
+			#layerSprawl{
+				border-color: #374140;
+				animation-name: example;
+				animation-duration: 3s;
+				animation-iteration-count: infinite;
+				transition: 1s;
+			}
+			.layerSprawlPushed{
+				border: 1px solid white !important;
+				transition: 1s;
+			}
+			/* *****
+			Style map layers 2 
+			***** */
+			#layer-ethnic, #layer-hh{
+				border-top: 1px solid #374140;
+				border-bottom: 1px solid #374140;
+				height: 114px;
+				width: 155px;
+				animation-name: example;
+				animation-duration: 3s;
+				animation-iteration-count: infinite;
+				text-align: left;
+				padding: 5px;
+				transition: 1s !important;
+			}
+			@keyframes example {
+			    0% {border-color: #374140;}
+			    50% {border-color: #1E1E20;}
+			    100% {border-color: #374140;}
+			}
+			.lsoc-title{
+				text-align: center;
+				margin-bottom: 5px;
+				top: 0;
+			}
+			.lsoc-class{
+				padding-left: 38px;
+			}
+			.class-marker{
+			}
+			.layer-ethnicPushed, .layer-hhPushed{
+				border-top: 1px solid #DFDFDF !important;
+				border-bottom: 1px solid #DFDFDF !important;
+				transition: 1s !important;
+			}
+			#rp-map-sources {
+				position: fixed;
+				top: 505px;
+				padding-left: 20px;
+
+			}
+			#rp-map-sources * {
+				font-size: 10px;
+			}
+			/* *****
+			OL Style
+			***** */
+			.ol-control {background-color: transparent !important; !important; padding: 0px !important;}
+			.ol-zoom {
+				position: fixed !important;
+				left: 9px !important;
+				top: 9px !important;
+			}
+			.ol-zoom-in, .ol-zoom-out {
+				box-shadow: 0 0 0 3px #374140 inset;
+				width: 35px !important;
+				height: 35px !important;
+				border-radius: 0px !important;
+				background-color: #1E1E20 !important;
+			}
+			.ol-zoom-in:focus, .ol-zoom-out:focus {
+				background-color: #1E1E20 !important;
+				transition: 1s;
+			}
+			.ol-zoom-in:hover, .ol-zoom-out:hover {
+				background-color: #DFDFDF !important;
+				color: #1E1E20 !important;
+				transition: 1s;
+			}
+			.ol-control button {background-color: #1E1E20;}
+			.ol-zoom-in {margin-bottom: 5px !important;}
+			.ol-scale-line{background:rgba(0,0,0,0) !important;}
+		</style>
+		<link rel="stylesheet" href="ol-3.18.2/ol.css">
+		<script src="ol-3.18.2/ol.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id='map'></div>
+
+		<div id='right-panel'>
+			<div id='rp-map-title'>
+				<h1 id='mapTitle'>Urban Sprawl in Houston (1993 - 2010)</h1>
+			</div>
+			<hr/>
+			<div id='rp-map-layers1' class='rp-map-layers'>
+				<h2 id='h21' class='mapbox-tile'>Urban extent</h2>
+				<div id='map-layers1'>
+					<table id='layer-extent'>
+						<tr>
+							<td width='10px'></td>
+							<td id='layer1993' name='layer1993' class='layer-pointer l1 layer1993Pushed'>1993</td>
+							<td width="10px"></td>
+							<td id='layer2000' name='layer2000' class='layer-pointer l1'>2000</td>
+							<td width='10px'></td>
+							<td id='layer2010' name='layer2010' class='layer-pointer l1'>2010</td>
+							<td width='10px'></td>
+						</tr>
+						<tr height='20px'></tr>
+						<tr>
+							<td width='10px'></td>
+							<td id='layerSprawl' name='layerSprawl' class='layer-pointer l1' colspan='5'>Urban sprawl ( 93 - 10 )</p>
+							<td width='10px'></td>
+					</table>
+				</div>
+			</div>
+
+			<div id='rp-map-layers2' class='rp-map-layers'>
+				<h2 id='h22' class='cartodb-tile'>Sociodemographic groups</h2>
+				<div id='map-layers2'>
+					<table id='layer-socio'>
+						<tr>
+							<td width='10px'></td>
+							<td id='layer-ethnic' name='layerEthnic' class='layer-pointer'>
+								<p class='lsoc-title'>Ethnicity</p>
+								<p class='lsoc-class'><span class='class-marker' id='whiteEth'>●</span>&nbsp; &nbsp;White</p>
+								<p class='lsoc-class'><span class='class-marker' id='blackEth'>●</span>&nbsp; &nbsp;Black</p>
+								<p class='lsoc-class'><span class='class-marker' id='latinoEth'>●</span>&nbsp; &nbsp;Latino</p>
+								<p class='lsoc-class'><span class='class-marker' id='asianEth'>●</span>&nbsp; &nbsp;Asian</p>
+								<p class='lsoc-class'><span class='class-marker' id='otherEth'>●</span>&nbsp; &nbsp;Other</p>
+							</td>
+							<td width='10px'></td>
+							<td id='layer-hh' name='layerHouseholder' class='layer-pointer'>
+								<p class='lsoc-title'>Householder</p>
+								<p class='lsoc-class'><span class='class-marker' id='ownerHh'>●</span>&nbsp; &nbsp;Owner</p>
+								<p class='lsoc-class'><span class='class-marker' id='renterHh'>●</span>&nbsp; &nbsp;Renter</p>
+							</td>
+							<td width='10px'></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div id='rp-map-sources'>
+				<p>Each ● equals 20 people. <em>Source : 2010, USA Census tract data.</em></p>
+			</div>
+		</div>
+
+		<div id='map-attributions'>
+			<p>&copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> </p>
+		</div>
+
+		<!-- JavaScript -->
+		<script type="text/javascript">
+			
+			// Set base layers (CartoDB, Mapbox Satellite, personal vector tiles hosted on Mapbox)
+			var cartodbTile = new ol.layer.Tile({
+				source: new ol.source.OSM({
+					url: 'http://{a-c}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+				})
+			});
+
+			var mapboxTile = new ol.layer.Tile({
+				source: new ol.source.XYZ({
+					url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid29vdGFuNjciLCJhIjoiY2lxeG1id2J4MDA0amh0bmo2b3ZrM284cyJ9.dZofdSG7bDjCRNKQQrYrPg'
+				})
+			});
+
+			var layerEthnic = new ol.layer.Tile({
+				source: new ol.source.XYZ({
+					url: 'https://api.mapbox.com/styles/v1/wootan67/ciu2gqznf006r2ho8duk33v6i/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid29vdGFuNjciLCJhIjoiY2lxeG1id2J4MDA0amh0bmo2b3ZrM284cyJ9.dZofdSG7bDjCRNKQQrYrPg'
+				})
+			});
+
+			var layerHouseholder = new ol.layer.Tile({
+				source: new ol.source.XYZ({
+					url: 'https://api.mapbox.com/styles/v1/wootan67/ciu2gbj18006h2hq5scs431g9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid29vdGFuNjciLCJhIjoiY2lxeG1id2J4MDA0amh0bmo2b3ZrM284cyJ9.dZofdSG7bDjCRNKQQrYrPg'
+				})
+			});
+
+			// Set view (centered on Houston, TX)
+
+			var mapView = new ol.View({
+				center: ol.proj.fromLonLat([-95.20027, 29.84328]),
+				zoom: 10
+			});
+
+			// Create the actual map
+
+			var map = new ol.Map({
+				layers: [cartodbTile],
+				controls: [new ol.control.ScaleLine, new ol.control.Zoom],
+				target: 'map',
+				view: mapView
+			});
+
+			// Load vector data (Harris County contour, urban extent for 3 dates [1993, 2000, 2010], difference between 1993 and 2010)
+
+			var harrisCounty = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'harrisCounty.json',
+					format: new ol.format.TopoJSON({
+						defaultDataProjection: 'EPSG:4326',
+						projection: 'EPSG:3857'
+					})
+				}),
+				style: new ol.style.Style({
+					stroke: new ol.style.Stroke({
+						width: 1,
+						color: 'rgba(255,255,255,1)'
+					}),
+					fill: new ol.style.Fill({
+						color: 'rgba(255,255,255,0)'
+					})
+				})
+			});
+
+			var layer2010 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: '20100825_4326.json',
+					format: new ol.format.TopoJSON({
+						defaultDataProjection: 'EPSG:4326',
+						projection: 'EPSG:32615'
+					})
+				}),
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(115,20,50,0.75)'
+					})
+				})
+			});
+
+			var layer2000 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: '20000906_4326.json',
+					format: new ol.format.TopoJSON({
+						defaultDataProjection: 'EPSG:4326',
+						projection: 'EPSG:3857'
+					})
+				}),
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(205,30,45,0.75)'
+					})
+				})
+			});
+
+			var layer1993 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: '19930927_4326.json',
+					format: new ol.format.TopoJSON({
+						defaultDataProjection: 'EPSG:4326',
+						projection: 'EPSG:3857'
+					})
+				}),
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(255,85,50,0.75)'
+					})
+				})
+			});
+
+			var layerSprawl = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'urbanSprawl9310_4326.json',
+					format: new ol.format.TopoJSON({
+						defaultDataProjection: 'EPSG:4326',
+						projection: 'EPSG:3857'
+					})
+				}),
+				style: new ol.style.Style({
+					stroke: new ol.style.Stroke({
+						width: 1,
+						color: 'rgba(223,223,233,0.6)'
+					}),
+					fill: new ol.style.Fill({
+						color: 'rgba(223,223,233,0.1)'
+					})
+				})
+			});
+
+			// Add layers on to the map and set z-index
+
+			map.addLayer(harrisCounty);
+			map.addLayer(layer1993);
+
+			harrisCounty.setZIndex(99);
+			layerEthnic.setZIndex(10);
+			layerHouseholder.setZIndex(10);
+			layerSprawl.setZIndex(11);
+			layer1993.setZIndex(4);
+			layer2000.setZIndex(3);
+			layer2010.setZIndex(2);
+
+			// jQuery script
+
+			$('.cartodb-tile').on("click", function() {
+				map.removeLayer(mapboxTile);
+				map.addLayer(cartodbTile);
+			});
+
+			$('.mapbox-tile').on("click", function() {
+				map.removeLayer(cartodbTile);
+				map.addLayer(mapboxTile);
+			});
+
+			$('.layer-pointer').on("click", function() {
+				var layerAttributes = $(this).attr('class');
+				var layerId = $(this).attr('id');
+				var layerPushed = layerId+'Pushed';
+				$(this).toggleClass(layerPushed);
+			});
+
+			$('.layer-pointer').on("click", function() {
+				var layerAttributes = $(this).attr('class').split(" ");
+				var lengthAttributes = layerAttributes.length;
+				var layerName = $(this).attr('name');
+				if (layerAttributes[lengthAttributes-1].split('').slice(-6).join('') == 'Pushed') {
+					map.addLayer(eval(layerName));
+					if (layerName == 'layerEthnic') {
+						$('#whiteEth').css({'color':'rgb(255,25,125)','transition':'1s'});
+						$('#blackEth').css({'color':'rgb(0,150,200)','transition':'1s'});
+						$('#latinoEth').css({'color':'rgb(255,125,0)','transition':'1s'});
+						$('#asianEth').css({'color':'rgb(0,225,0)','transition':'1s'});
+						$('#otherEth').css({'color':'rgb(255,255,255)','transition':'1s'});
+					}
+					if (layerName == 'layerHouseholder') {
+						$('#ownerHh').css({'color':'rgb(31,138,112)','transition':'1s'});
+						$('#renterHh').css({'color':'rgb(190,219,57)','transition':'1s'});
+					}
+				}else{
+					map.removeLayer(eval(layerName));
+					if (layerName == 'layerEthnic') {
+						$('#whiteEth').css({'color':'#DFDFDF','transition':'1s'});
+						$('#blackEth').css({'color':'#DFDFDF','transition':'1s'});
+						$('#latinoEth').css({'color':'#DFDFDF','transition':'1s'});
+						$('#asianEth').css({'color':'#DFDFDF','transition':'1s'});
+						$('#otherEth').css({'color':'#DFDFDF','transition':'1s'});
+					}
+					if (layerName == 'layerHouseholder') {
+						$('#ownerHh').css({'color':'#DFDFDF','transition':'1s'});
+						$('#renterHh').css({'color':'#DFDFDF','transition':'1s'});
+					}
+				}
+			});
+
+			$('h1').on("click", function() {
+				map.getView().setCenter(ol.proj.fromLonLat([-95.20027, 29.84328]),10);
+				map.getView().setZoom(10);
+			});
+		</script>
+	</body>
+</html>

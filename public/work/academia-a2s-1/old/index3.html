@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8' />
+		<title>Strasbourg - Built-up land</title>
+		<link rel="stylesheet" href="ol-3.18.2/ol.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Assistant|Roboto+Slab" rel="stylesheet">
+		<link rel="stylesheet" href="stylesheet.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="ol-3.18.2/ol.js"></script>
+	</head>
+	<body>
+		<div class="top-pad">
+			<h1>The expansion of built-up land in Strasbourg, from 1992 to 2011</h1>
+		</div>
+
+		<div id="map">
+			<div id="information" class="pushed"><i class="fa fa-info" aria-hidden="true"></i></div>
+			<div id="tooltip">
+				<p>These classification maps were produced using SPOT Imagery and Copernicus data (HRL Imperviousness, 2012).</p>
+				<hr>
+				<p>F-values :</p>
+				<table>
+					<tr>
+						<th id="f1992">1992</th>
+						<th id="f1996">1996</th>
+						<th id="f1998">1998</th>
+						<th id="f1999">1999</th>
+						<th id="f2000">2000</th>
+					</tr>
+					<tr>
+						<td>0,9579</td>
+						<td>0,9641</td>
+						<td>0,9593</td>
+						<td>0,9622</td>
+						<td>0,9656</td>
+					</tr>
+					<tr><td><br></td></tr>
+					<tr>
+						<th id="f2001">2001</th>
+						<th id="f2004">2004</th>
+						<th id="f2010">2010</th>
+						<th id="f2011">2011</th>
+					</tr>
+					<tr>
+						<td>0,9666</td>
+						<td>0,9613</td>
+						<td>0,9712</td>
+						<td>0,9644</td>
+					</tr>
+				</table>
+				<br>
+			</div>
+			<div id="layer-switch">
+				<p>Select layer(s)</p>
+				<hr>
+				<div class="checkbox-wrap">
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_1992" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_1992">1992</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_1996" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_1996">1996</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_1998" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_1998">1998</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_1999" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_1999">1999</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_2000" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_2000">2000</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_2001" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_2001">2001</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_2004" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_2004">2004</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_2010" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_2010">2010</label>
+					</div>
+					<div class="checkbox">
+						<input class="layer-checkbox" id="oR11bR_2011" type="checkbox" name="geojson-layer">
+						<label for="oR11bR_2011">2011</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var map = new ol.Map({
+				target: 'map',
+				layers: [
+					new ol.layer.Tile({
+						source: new ol.source.XYZ({
+							url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.	eyJ1Ijoid29vdGFuNjciLCJhIjoiY2lxeG1id2J4MDA0amh0bmo2b3ZrM284cyJ9.dZofdSG7bDjCRNKQQrYrPg'
+						})
+					})
+				],
+				view: new ol.View({
+					center: ol.proj.fromLonLat([7.74114365799,48.5735129521]),
+					zoom: 10.9
+				}),
+				controls: ol.control.defaults().extend([
+					new ol.control.ScaleLine()
+				])
+			});
+
+			var oR11bR_1992 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_1992.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_1992',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(255,255,204,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_1996 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_1996.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_1996',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(255,237,160,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_1998 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_1998.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_1998',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(254,217,118,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_1999 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_1999.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_1999',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(254,178,76,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_2000 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_2000.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_2000',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(253,141,60,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_2001 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_2001.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_2001',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(252,78,42,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_2004 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_2004.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_2004',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(227,26,28,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_2010 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_2010.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				title: 'oR11bR_2010',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(189,0,38,0.75)'
+					})
+				})
+			});
+	
+			var oR11bR_2011 = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/oR11bR_2011.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				name: 'oR11bR_2011',
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(128,0,38,0.75)'
+					})
+				})
+			});
+
+			var strasbg = new ol.layer.Vector({
+				source: new ol.source.Vector({
+					url: 'database/strasbg_WGS84.geojson',
+					format: new ol.format.GeoJSON({
+						defaultDataProjection :'EPSG:4326', 
+						projection: 'EPSG:3857'
+					})
+				}),
+				name: 'strasbg_WGS84',
+				style: new ol.style.Style({
+					stroke: new ol.style.Stroke({
+						color: 'rgba(255,255,255,1)',
+						width: 1
+					}),
+					fill: new ol.style.Fill({
+						color: 'rgba(255,255,255,0)'
+					})
+				})
+			});
+
+			oR11bR_1992.setZIndex(10);
+			oR11bR_1996.setZIndex(9);
+			oR11bR_1998.setZIndex(8);
+			oR11bR_1999.setZIndex(7);
+			oR11bR_2000.setZIndex(6);
+			oR11bR_2001.setZIndex(5);
+			oR11bR_2004.setZIndex(4);
+			oR11bR_2010.setZIndex(3);
+			oR11bR_2011.setZIndex(2);
+
+			strasbg.setZIndex(11);
+			map.addLayer(strasbg);
+	
+			$(document).ready(function(){
+				$('.layer-checkbox').prop('checked',false);
+				$('#oR11bR_1992').prop('checked',true);
+				$('#information').css('background-color', '#DC3522');
+				$('#tooltip').toggle();
+				map.addLayer(oR11bR_1992);
+			});
+	
+			$(".layer-checkbox").on('change', function() {
+				var layerId = $(this).attr('id');
+				if ($(this).is(':checked')) {
+					map.addLayer(eval(layerId));
+				} else {
+					map.removeLayer(eval(layerId));
+				}
+			});
+
+			$('#information').on('click',function(){
+				$('#tooltip').toggle();
+				var informationStatus = $('#information').attr('class');
+				if (informationStatus=='pushed') {
+					$(this).removeClass('pushed');
+					$(this).css("background-color", "#1E1E20")
+				} else if (informationStatus!='pushed') {
+					$(this).addClass('pushed');
+					$(this).css("background-color", "#DC3522")
+				}
+			});
+		</script>
+	</body>
+</html>
