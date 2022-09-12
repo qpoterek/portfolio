@@ -19,25 +19,13 @@
     "cssnano": "^5.1.13"
   },
   "dependencies": {
-    "@astrojs/preact": "^1.0.2",
-    "@astrojs/react": "^1.0.0",
     "@fontsource/fira-code": "^4.5.11",
     "@fontsource/fira-sans": "^4.5.9",
     "astro-icon": "^0.7.3",
     "astro-spa": "^1.3.9",
     "firebase": "^9.9.4",
     "isolde": "^1.1.6",
-    "isotope-layout": "^3.0.6",
-    "lodash": "^4.17.21",
-    "masonic": "^3.6.5",
-    "minimasonry": "^1.3.0",
-    "nanostores": "^0.6.0",
     "normalizecss": "^3.0.0",
-    "osm-request": "^1.2.10",
-    "phosphor-icons": "^1.4.2",
-    "phosphor-react": "^1.4.1",
-    "react-masonry-css": "^1.0.16",
-    "uuid": "^8.3.2",
-    "xml-js": "^1.6.11"
+    "uuid": "^8.3.2"
   }
 }
