@@ -6,7 +6,7 @@ Even though the present page is only the repository, you can visit the actual we
 
 <p align="center">
 	<a href="https://www.quentinpoterek.com/">
-		<img alt="Portfolio link" src="https://img.shields.io/badge/-🌍_ACCESS_WEBMAP_-e0f7fa?style=for-the-badge">
+		<img alt="Portfolio link" src="https://img.shields.io/badge/-🌍_ACCESS_PORTFOLIO_-e0f7fa?style=for-the-badge">
 	</a>
 </p>
 
