@@ -6,7 +6,7 @@ Even though the present page is only the repository, you can visit the actual we
 
 <p align="center">
 	<a href="https://www.quentinpoterek.com/">
-		<img alt="Vercel" src="https://img.shields.io/badge/-👉_portfolio_👈-white?style=for-the-badge">
+		<img alt="Portfolio link" src="https://img.shields.io/badge/-🌍_ACCESS_WEBMAP_-e0f7fa?style=for-the-badge">
 	</a>
 </p>
 
@@ -54,7 +54,7 @@ npm run dev
 
 ## ☑️ Tasks
 
-- [ ] Add a navigation arrow to go back up when browsing the page built from `/src/work.astro`.
+- [ ] Add a navigation arrow to go back up when browsing the page built from `src/work.astro`.
 - [ ] Refactor the `SvgIcon.astro` component, and the subsequent icons in `src/icons`.
 - [ ] Refactor the `ThemeSwitcher.astro` component to avoid code repetition and the use of `innerHTML`.
 - [ ] Either redesign the button in `Accordion.astro` or rework the way skill groups are added in `pages/about.astro` so as to allow using custom SVG icons instead of emojis.
