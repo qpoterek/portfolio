@@ -107,7 +107,7 @@ export default [
 	{
 		title: "Résultats du prototype pour l'extraction des taches urbaines", 
 		description: "Outil de visualisation des résultats de classification de la tache urbaine sur Strasbourg, à partir d'images SPOT.", 
-		href: "/work/academia-a2s-1/index.html", 
+		href: "https://poterekq.github.io/a2s-urban-webmap/", 
 		src: "/images/thumbnails/academia-a2s-1.jpg", 
 		alt: "Interface de visualisation des résultats", 
 		nature: "carte web", 
