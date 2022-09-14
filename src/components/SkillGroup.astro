@@ -7,7 +7,9 @@ const {
 ---
 
 <div class="flex flex-wrap justify-center gap-x-3 gap-y-3">
-	{items.map(item => {
-		return <SkillCard title={item.title} icon={item.icon} level={item.level} enableDark={item.enableDark} />
-	})}
+	{
+		items.map(item => {
+			return <SkillCard title={item.title} icon={item.icon} level={item.level} enableDark={item.enableDark} />
+		})
+	}
 </div>

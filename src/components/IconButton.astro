@@ -6,10 +6,7 @@ const {
   overrideDefaults=false, 
 } = Astro.props
 
-let defaultClassNames = `
-  h-10 w-10 flex items-center justify-center rounded 
-  transition-colors hover:bg-neutral-300/50
-`
+let defaultClassNames = "h-10 w-10 flex items-center justify-center rounded transition-colors hover:bg-neutral-300/50"
 
 if (!overrideDefaults) {
   defaultClassNames += ` ${classNames}`

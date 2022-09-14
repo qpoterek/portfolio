@@ -1,11 +1,7 @@
 ---
 const { classNames, overrideDefaults=false } = Astro.props
 
-const defaultClassNames = `
-	mx-auto px-4 md:px-8 lg:px-16 py-20 
-	w-full max-w-7xl flex flex-col gap-y-20
-	${classNames ?? ""}
-`
+const defaultClassNames = `${classNames ?? ""} mx-auto px-4 md:px-8 lg:px-16 py-20 w-full max-w-7xl flex flex-col gap-y-20`
 ---
 
 <main class={overrideDefaults ? classNames : defaultClassNames}>

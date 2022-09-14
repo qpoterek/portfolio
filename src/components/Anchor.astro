@@ -6,14 +6,7 @@ const {
 	openInNewTab=true,
 } = Astro.props
 
-let defaultClassNames = `
-	flex gap-x-2 justify-center items-center 
-	w-fit rounded font-semibold px-3 py-2 
-	transition bg-white/50 dark:bg-neutral-700/50
-	hover:bg-neutral-300/50 dark:hover:bg-neutral-300/50
-	shadow dark:shadow-md
-	${classNames ?? ""}
-`
+let defaultClassNames = `${classNames ?? ""} flex gap-x-2 justify-center items-center w-fit rounded font-semibold px-3 py-2 transition bg-white/50 dark:bg-neutral-700/50 hover:bg-neutral-300/50 dark:hover:bg-neutral-300/50 shadow dark:shadow-md`
 ---
 
 <a

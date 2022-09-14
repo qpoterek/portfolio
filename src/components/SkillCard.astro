@@ -27,13 +27,10 @@ if (level) {
 	}
 }
 
-const classNames = `pointer-events-none h-10 w-10 rounded ${enableDark ? "transition dark:invert" : ""}`
+const classNames = `${enableDark ? "transition dark:invert" : ""} pointer-events-none h-10 w-10 rounded`
 ---
 
-<div class="
-	flex gap-x-4 relative h-fit px-4 py-3 
-	rounded bg-white/50 dark:bg-neutral-700/50 
-">
+<div class="flex gap-x-4 relative h-fit px-4 py-3 rounded bg-white/50 dark:bg-neutral-700/50">
 	<img src={icon} class={classNames} loading="lazy"/>
 	<div class="flex flex-col justify-center">
 		<h3 class="text-sm font-bold">{title}</h3>

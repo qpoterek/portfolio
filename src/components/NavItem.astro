@@ -6,20 +6,22 @@ const {
 	isBold,
 	isFullWidth=false,
 } = Astro.props
+
+let classNames = ["flex", "gap-x-1", "px-3", "py-2", "rounded", "justify-center", "cursor-pointer", "transition", "no-underline"]
+
+classNames.push(isBold ? "font-semibold" : "")
+classNames.push(isActive ? "" : "hover:bg-neutral-300/50")
+classNames.push(isActive ? "bg-neutral-800 dark:bg-neutral-200" : "bg-transparent")
+classNames.push(isActive ? "text-neutral-200 dark:text-neutral-800" : "text-neutral-800 dark:text-neutral-200")
+classNames.push(isActive ? "shadow-md" : "shadow-none")
+classNames.push(isFullWidth ? "w-full" : "")
+
+classNames = classNames.filter(item => item !== "")
 ---
 
 <a 
 	href={href} 
-	class={`
-		flex gap-x-1 px-3 py-2 rounded justify-center
-		cursor-pointer transition no-underline 
-		${isBold ? "font-semibold" : ""}
-		${isActive ? "" : "hover:bg-neutral-300/50"}
-		${isActive ? "bg-neutral-800 dark:bg-neutral-200" : "bg-transparent"} 
-		${isActive ? "text-neutral-200 dark:text-neutral-800" : "text-neutral-800 dark:text-neutral-200"}
-		${isActive ? "shadow-md" : "shadow-none"}
-		${isFullWidth ? "w-full" : ""}
-	`}
+	class={classNames.join(" ")}
 >
 	{text}
 </a>

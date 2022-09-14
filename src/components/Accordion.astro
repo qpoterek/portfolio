@@ -11,42 +11,17 @@ const {
 
 const uuid = uuidv4()
 
-const accordionBaseStyle = `
-	accordion
-	rounded
-	overflow-hidden
-	${classNames}
-`
-const accordionContentBaseStyle = 
-	isActive ? 
-	"h-max scale-y-100 p-4" :
-	"max-h-0 scale-y-0"
+const accordionBaseStyle = `accordion rounded overflow-hidden ${classNames}`
+const accordionContentBaseStyle = isActive ? "h-max scale-y-100 p-4" : "max-h-0 scale-y-0"
 ---
 
 <div id={uuid} class={accordionBaseStyle}>
-	<button type="button" class="
-		accordion-btn
-		w-full h-12 px-4 shadow dark:shadow-md
-		cursor-pointer font-semibold
-		rounded bg-white/50 dark:bg-neutral-700/50
-		transition-colors hover:bg-neutral-300/50 dark:hover:bg-neutral-300/50
-		flex items-center justify-between gap-x-4
-	">
+	<button type="button" class="accordion-btn w-full h-12 px-4 shadow dark:shadow-md cursor-pointer font-semibold rounded bg-white/50 dark:bg-neutral-700/50 transition-colors hover:bg-neutral-300/50 dark:hover:bg-neutral-300/50 flex items-center justify-between gap-x-4">
 		<slot name="icon" />
 		<p class="mr-0 lg:mr-auto">{label}</p>
-		<CaretDown height={16} width={16} classNames={`
-			accordion-caret 
-			transition-all duration-300 ease-in-out
-			${isActive ? "rotate-180" : "rotate-0"}
-		`} />
+		<CaretDown height={16} width={16} classNames={`accordion-caret ${isActive ? "rotate-180" : "rotate-0"} transition-all duration-300 ease-in-out`} />
 	</button>
-	<div class={`
-		accordion-content
-		overflow-hidden ${accordionContentBaseStyle} origin-top
-		flex justify-center items-center
-		transition-all duration-300 ease-in-out
-		bg-white/25 dark:bg-neutral-700/25 
-	`}>
+	<div class={`accordion-content ${accordionContentBaseStyle} overflow-hidden origin-top flex justify-center items-center transition-all duration-300 ease-in-out bg-white/25 dark:bg-neutral-700/25`}>
 		<slot name="content" />
 	</div>
 </div>

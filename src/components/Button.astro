@@ -6,13 +6,7 @@ const {
 	isBold=true,
 } = Astro.props
 
-const defaultClassNames = `
-	flex items-center justify-center gap-x-2 px-3 py-2 w-fit rounded
-	bg-white/50 dark:bg-neutral-700/50 shadow dark:shadow-md
-	transition-colors hover:bg-neutral-300/50 dark:hover:bg-neutral-300/50
-	${isBold ? "font-semibold" : ""}
-	${classNames}
-`
+const defaultClassNames = `${classNames} ${isBold ? "font-semibold" : ""} flex items-center justify-center gap-x-2 px-3 py-2 w-fit rounded bg-white/50 dark:bg-neutral-700/50 shadow dark:shadow-md transition-colors hover:bg-neutral-300/50 dark:hover:bg-neutral-300/50`
 ---
 
 <button 
