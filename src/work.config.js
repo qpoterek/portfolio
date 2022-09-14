@@ -9,6 +9,7 @@
 // 			alt: "", 
 // 			nature: "", 
 // 			date: "",
+//			repo: "",
 // 		},
 // 	],
 // },
@@ -112,5 +113,6 @@ export default [
 		alt: "Interface de visualisation des résultats", 
 		nature: "carte web", 
 		date: "Septembre 2016",
+		repo: "https://github.com/poterekq/a2s-urban-webmap",
 	},
 ]
