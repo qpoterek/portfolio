@@ -18,29 +18,29 @@ const {
 <article class={`${isAbsolute ? "absolute" : "relative"} group`} data-isolde-el={nature}>
 	<div class="relative max-w-2xl h-fit flex flex-col rounded-lg bg-white/50 dark:bg-neutral-700/50 shadow hover:scale-105 transition-transform">
 		<a href={href} target="_blank">
-			<div class="relative overflow-hidden aspect-w-16 aspect-h-9 rounded-lg bottom-shadow">
+			<div class="overflow-hidden aspect-w-16 aspect-h-9 rounded-lg bottom-shadow">
 				<img src={src} alt={alt} loading="lazy" decoding="async" class="object-cover h-40 w-full" />
-
-				<div class="absolute top-4 left-4 w-fit px-3 py-1 shadow-md bg-white/90 dark:bg-neutral-700/90 rounded-full">
-					
-					<p class="text-sm truncate"><span class="font-semibold">{nature[0].toUpperCase() + nature.substring(1)}</span> — <span>{date}</span></p>
-				</div>
-				{
-					repo &&
-					<div class="absolute bottom-4 right-4 w-fit shadow-md bg-white/90 dark:bg-neutral-700/90 rounded-full">
-						<Anchor href={repo}>
-							<div class="w-full h-full p-2">
-								<GitHub />
-							</div>
-						</Anchor>
-					</div>
-				}
 			</div>
 			<div class="p-4">
 				<h3 class="font-bold">{title}</h3>
 				<p class="text-sm text-neutral-500 dark:text-neutral-400 hyphens">{description}</p>
 			</div>
 		</a>
+
+		<div class="absolute top-4 left-4 w-fit px-3 py-1 shadow-md bg-white/90 dark:bg-neutral-700/90 rounded-full">
+			<p class="text-sm truncate"><span class="font-semibold">{nature[0].toUpperCase() + nature.substring(1)}</span> — <span>{date}</span></p>
+		</div>
+
+		{
+			repo &&
+			<div class="absolute top-[100px] right-4 w-fit shadow-md bg-white/90 dark:bg-neutral-700/90 rounded-full">
+				<Anchor href={repo}>
+					<div class="w-full h-full p-2">
+						<GitHub />
+					</div>
+				</Anchor>
+			</div>
+		}
 	</div>
 </article>
 
