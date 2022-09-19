@@ -16,6 +16,16 @@
 
 export default [
 	{
+		title: "Mon portfolio", 
+		description: "Site web réalisé comme MPA avec le framework JavaScript Astro.", 
+		href: "https://www.quentinpoterek.com/", 
+		src: "/images/thumbnails/website-portfolio-1.jpg", 
+		alt: "Capture d'écran du portfolio", 
+		nature: "Site web", 
+		date: "Septembre 2022",
+		repo: "https://github.com/poterekq/portfolio",
+	},
+	{
 		title: "Automated detection of former field systems from airborne laser scanning data", 
 		description: "Apport de l'intelligence artificielle et des données LiDAR pour extraire des formes agraires anciennes.", 
 		href: "https://doi.org/10.1016/j.jag.2021.102563", 
