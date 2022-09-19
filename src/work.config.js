@@ -99,11 +99,12 @@ export default [
 	{
 		title: "Artificialisation et ségrégation socio-spatiale (Master 1)", 
 		description: "Outil de visualisation de la relation entre l'artificialisation des sols à Houston (Texas) et les données de census.", 
-		href: "/work/master-presentation-1/index.html", 
+		href: "https://poterekq.github.io/master-houston-webmap/", 
 		src: "/images/thumbnails/master-presentation-1.jpg", 
 		alt: "Interface de visualisation des résultats", 
 		nature: "carte web", 
 		date: "Février 2017",
+		repo: "https://github.com/poterekq/master-houston-webmap",
 	},
 	{
 		title: "Résultats du prototype pour l'extraction des taches urbaines", 
