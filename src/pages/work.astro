@@ -15,12 +15,12 @@ import Card from '../components/Card.astro'
 				{
 					
 					[...new Set(config.map(item => item.nature))]
-						.sort((a, b) => a[0] > b[0] ? 1 : -1)
+						.sort((a, b) => a[0] >= b[0] ? 1 : -1)
 						.map(item => (
 							<li class="grid-filter dark:border-neutral-700 dark:bg-neutral-900/80 dark:shadow-md" data-isolde-link={item}>
 								{item[0].toUpperCase() + item.substring(1)}
 							</li>
-					))
+						))
 				}
 			</ul>
 		</div>
