@@ -135,4 +135,13 @@ export default [
 		date: "Septembre 2016",
 		repo: "https://github.com/poterekq/a2s-urban-webmap",
 	},
+	{
+		title: "La ruée vers l'or en Californie (Licence)", 
+		description: "Carte réalisée pour une unité d'enseignement portant sur les mutations territoriales.", 
+		href: "https://mega.nz/file/O9gk0awa#zNQvjS36QGLl4lOkv0hKCpViwsCGVNERIKUCHU42JNg", 
+		src: "/images/thumbnails/carte-statique-2.jpg", 
+		alt: "Extrait de la carte", 
+		nature: "carte", 
+		date: "Avril 2016",
+	},
 ]
